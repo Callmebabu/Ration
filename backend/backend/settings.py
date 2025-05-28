@@ -1,8 +1,12 @@
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
+STATIC_URL = '/static/'
+
+# Add this:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Path setup for project base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
