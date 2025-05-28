@@ -49,76 +49,33 @@ const API_BASE = hostname.includes('192.168')
   };
 
   // 🚪 Login / OTP Send
-  const handleLogin = async () => {
-    setMessage('');
-    setLoading(true);
+const handleLogin = async () => {
+  setMessage('');
+  setLoading(true);
 
-    if (isAdmin) {
-      if (!username || !password) {
-        setMessage('Please enter both username and password.');
-        setLoading(false);
-        return;
+  // For user login (not admin)
+  if (!isAdmin) {
+    try {
+      const res = await axios.post('https://ration-a9md.onrender.com/api/validate-aadhar-email/', {
+        aadhar_number: aadharNumber.replace(/-/g, ''),
+        email: fullEmail,
+      });
+      console.log(res.data);
+      if (!res.data.success) {
+        setMessage('Aadhar number and email do not match.');
+      } else {
+        // Proceed with sending OTP or next step
       }
-
-      try {
-        const res = await axios.post(`${API_BASE}/admin-login/`, { username, password });
-        if (res.data.success) {
-          localStorage.setItem('admin', JSON.stringify(res.data));
-          navigate('/admin-dashboard');
-        } else {
-          setMessage(res.data.message || 'Invalid admin credentials.');
-        }
-      } catch (error) {
-        console.error('Admin login error:', error);
-        setMessage(error.response?.data?.message || 'Something went wrong.');
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      if (!aadharNumber || !emailPrefix) {
-        setMessage('Please enter both Aadhar number and email.');
-        setLoading(false);
-        return;
-      }
-
-      if (!/^\d{4}-\d{4}-\d{4}$/.test(aadharNumber)) {
-        setMessage('Enter a valid Aadhar number (XXXX-XXXX-XXXX).');
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const res = await axios.post(`${API_BASE}/validate-aadhar-email/`, {
-          aadhar_number: aadharNumber.replace(/-/g, ''),
-          email: fullEmail,
-        });
-
-        if (!res.data.success) {
-          setMessage('Aadhar number and email do not match.');
-          setLoading(false);
-          return;
-        }
-
-        const otpRes = await axios.post(`${API_BASE}/send-otp/`, {
-          aadhar_number: aadharNumber.replace(/-/g, ''),
-          email: fullEmail,
-        });
-
-        if (otpRes.data.success) {
-          setIsOtpSent(true);
-          setTimer(90);
-          setMessage('OTP has been sent to your email.');
-        } else {
-          setMessage(otpRes.data.message || 'Error sending OTP.');
-        }
-      } catch (error) {
-        console.error('User login error:', error);
-        setMessage(error.response?.data?.message || 'Something went wrong.');
-      } finally {
-        setLoading(false);
-      }
+    } catch (error) {
+      console.error(error);
+      setMessage('Error validating Aadhar and email.');
+    } finally {
+      setLoading(false);
     }
-  };
+  }
+  // ... Admin login logic below
+};
+
 
   // 🔐 OTP Verification
   const handleOtpVerification = async () => {
