@@ -78,7 +78,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME','ration_db'),  # Database name
         'USER': os.getenv('DB_USER','postgres'),  # Database user
         'PASSWORD': os.getenv('DB_PASSWORD','123'),  # Database password
-        'HOST': os.getenv('DB_HOST','localhost'),  # Database host
+        'HOST': os.getenv('DB_HOST','dpg-d0rn1iidbo4c73fcdn90-a'),  # Database host
         'PORT': os.getenv('DB_PORT','5432'),  # Default PostgreSQL port
     }
 }
