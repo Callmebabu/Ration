@@ -1,0 +1,244 @@
+/* PlaceOrderPage.css */
+
+.place-order-wrapper {
+  max-width: 960px;
+  margin: 6rem auto 2rem;
+/* Added 4rem top margin for space */
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+}
+
+.place-order-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  box-shadow: 0 8px 24px rgb(32 33 36 / 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.place-order-container:hover {
+  box-shadow: 0 12px 32px rgb(32 33 36 / 0.15);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2f80ed; /* primary color */
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+.message {
+  background-color: #f0f4ff;
+  border-left: 6px solid #2f80ed;
+  color: #2f80ed;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgb(47 128 237 / 0.2);
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.order-table thead tr th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #e0e0e0; /* border color */
+}
+
+.order-table tbody tr {
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.order-table tbody tr:hover {
+  background-color: #f0f6ff;
+}
+
+.order-table tbody tr td {
+  padding: 1rem;
+  vertical-align: middle;
+  color: #444;
+}
+
+.item-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  transition: transform 0.2s ease;
+}
+
+.item-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgb(0 0 0 / 0.2);
+}
+
+.order-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: right;
+  margin-bottom: 2rem;
+  color: #2f80ed;
+  letter-spacing: 0.5px;
+}
+
+button.proceed-btn,
+button.verify-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #2f80ed;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgb(47 128 237 / 0.3);
+  user-select: none;
+}
+
+button.proceed-btn:hover:not(:disabled),
+button.verify-btn:hover:not(:disabled) {
+  background-color: #1a5edb;
+  box-shadow: 0 7px 22px rgb(26 94 219 / 0.5);
+}
+
+button.proceed-btn:disabled,
+button.verify-btn:disabled {
+  background-color: #a4b0be;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 360px;
+  margin: 0 auto 2rem;
+}
+
+.otp-form h3 {
+  font-weight: 600;
+  color: #2f80ed;
+  letter-spacing: 0.4px;
+}
+
+.otp-form input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  letter-spacing: 0.25rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.otp-form input[type="text"]:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 8px #2f80ed;
+}
+
+.error-message {
+  color: #eb5757;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  user-select: none;
+}
+
+.payment-success-message {
+  background-color: #27ae60;
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-align: center;
+  box-shadow: 0 8px 24px rgb(39 174 96 / 0.4);
+  animation: successFadeIn 1.5s ease forwards;
+  user-select: none;
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 640px) {
+  .place-order-container {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .order-table thead tr th,
+  .order-table tbody tr td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .item-thumb {
+    width: 45px;
+    height: 45px;
+  }
+
+  .order-total {
+    font-size: 1.25rem;
+  }
+
+  button.proceed-btn,
+  button.verify-btn {
+    font-size: 1rem;
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .place-order-container {
+    padding: 16px;
+  }
+
+  .order-table thead tr th,
+  .order-table tbody tr td {
+    padding: 10px 6px;
+  }
+
+  .item-thumb {
+    width: 48px;
+    height: 48px;
+  }
+
+  button.proceed-btn,
+  button.verify-btn {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

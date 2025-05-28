@@ -1,0 +1,44 @@
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7); /* Slight transparency */
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Fade out effect when loader is hidden */
+.loader-container.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction while fading out */
+}
+
+.loader-image {
+  width: 100px;
+  height: 100px;
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-10deg) translateY(-10px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(0);
+  }
+  75% {
+    transform: rotate(10deg) translateY(10px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}

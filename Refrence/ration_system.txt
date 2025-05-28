@@ -1,0 +1,54 @@
+Entity Involved:
+	-People(users)
+	-Supplier(more like admin)
+	-Admin(controls flow of goods) 
+
+Admin:
+
+	-He is the master supplier
+	-Select and add Ration with area to be supplied
+	-then it sends notification to respective areas that the ration is arriving
+	-if arrival confirmation not received from Supplier even after some time he will take actions regarding it
+
+
+Supplier:
+	
+	-Receive the ration and check everything
+	-If received then send verification message
+	-If not received send report
+	-Send Ration notification
+
+User:
+
+	-create account for each family with all the details
+	-Card colour and details should be selected
+	-If ration available gets notification from Supplier and pay for it 
+
+
+Rice: Free of cost for all ration card holders.
+Sugar: Rs. 13.50 per kg for AAY cards and Rs. 25/- for all other cards.
+Wheat: Free of cost for all ration card holders.
+Kerosene: Rs. 13.60 to Rs. 14.20 per liter.
+
+pip install twilio- for otp
+pip install django-environ
+
+
+the maximum family member is 4 and minimum is 1 the admin add item for the area with limit when the user make purchase if the family member have 4 member mean the user set limit will be can purchase even they have 5
+
+d231474-1@0kicici
+
+🚫 Option 2: Real UPI Integration — Not Free
+Integrating actual UPI (like Razorpay, PhonePe, Google Pay) requires:
+
+Business account
+
+KYC verification
+
+Fee for each transaction (even ₹0 is invalid)
+
+
+$env:HOST = "0.0.0.0"
+npm start
+
+python manage.py runserver 0.0.0.0:8000

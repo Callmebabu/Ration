@@ -1,0 +1,272 @@
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  padding-bottom: 80px; /* Reserve space at bottom so scroll button doesn't cover content */
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.logo-icon {
+  margin-right: 10px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* ===================== NAV LINKS ===================== */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #1e293b;
+  text-decoration: none;
+  font-size: 1.05rem;
+  padding: 8px 10px;
+  transition: color 0.3s, transform 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-icon,
+.lang-icon {
+  margin-right: 6px;
+  font-size: 1.2rem;
+  color: #64748b;
+}
+
+.nav-link:hover .nav-icon,
+.nav-link:hover .lang-icon {
+  color: #2563eb;
+}
+
+/* ===================== NOTIFICATION ===================== */
+.nav-link-with-badge {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #ff4081;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* ===================== LANGUAGE SELECTOR ===================== */
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.95rem;
+  color: #64748b;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ===================== NAV TOGGLE (MOBILE) ===================== */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.nav-toggle span {
+  width: 26px;
+  height: 3px;
+  background: #1e293b;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.navbar.active .nav-toggle span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar.active .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.active .nav-toggle span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===================== RESPONSIVE NAV ===================== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: white;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+    border-top: 1px solid #e2e8f0;
+    z-index: 999;
+  }
+
+  .navbar.active .nav-links {
+    max-height: 500px;
+  }
+
+  .nav-link {
+    padding: 16px;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .language-selector {
+    justify-content: center;
+    margin: 10px 0;
+  }
+}
+
+/* ===================== SCROLL TO TOP ===================== */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  font-size: 28px;
+  padding: 16px 20px;
+  border-radius: 15px; /* Rounded corners */
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+  user-select: none; /* Prevent text selection */
+  /* Prevent scroll button from causing horizontal scroll */
+  max-width: 56px;
+  max-height: 56px;
+  overflow: hidden;
+}
+
+.scroll-top:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ===================== DISABLE HOVER ON ANDROID ===================== */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link:hover {
+    color: inherit;
+    transform: none;
+  }
+
+  .nav-link:hover::after {
+    width: 0;
+  }
+
+  .nav-link:hover .nav-icon,
+  .nav-link:hover .lang-icon {
+    color: inherit;
+  }
+
+  /* Tap effect */
+  .nav-link:active {
+    background-color: #e0f2fe;
+  }
+}

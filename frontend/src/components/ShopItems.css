@@ -1,0 +1,583 @@
+:root {
+  --primary-color: #28a745;
+  --primary-hover: #218838;
+  --text-dark: #333;
+  --text-light: #fff;
+  --bg-light: #f8f9fa;
+  --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.5s ease-in-out;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast notification */
+.toast-notification {
+  position: fixed;
+  top: 60px; /* reduced from 80px */
+  right: 20px;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: var(--text-light);
+  padding: 10px 16px; /* slightly reduced padding */
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-soft);
+  z-index: 10000;
+  animation: fadeIn var(--transition-smooth);
+}
+
+/* Fixed Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px; /* reduced from 60px */
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 16px; /* reduced horizontal padding */
+}
+
+/* Shop Page Layout */
+.shop-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 72px; /* reduced from 80px */
+  padding-bottom: 100px; /* reduced from 120px */
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+
+  background-image: url('../assets/images/g.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+/* Android-specific extra top padding */
+.android-device .shop-content {
+  padding-top: 90px !important; /* extra padding-top only for Android */
+
+}
+
+/* Main content container */
+.shop-content {
+  position: relative;
+  flex: 1;
+  max-width: 1200px;
+  margin: 40px auto 0 auto; /* margin-top reduced from 80px */
+  padding: 16px 16px 32px 16px; /* padding reduced */
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-medium);
+  animation: fadeIn 0.6s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px; /* reduced padding */
+  margin-bottom: 32px; /* reduced margin */
+  gap: 8px;
+}
+
+.shop-header h2 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 28px; /* slightly smaller font */
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.shop-header .total-price {
+  flex: 0 0 auto;
+  text-align: left;
+  font-size: 2.6rem; /* smaller font */
+  font-weight: 700;
+  color: #2e8b57;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.shop-header .place-order-btn {
+  flex: 0 0 auto;
+  position: static;
+  margin-bottom: 0;
+  white-space: nowrap;
+  padding: 12px 24px; /* reduced padding */
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  font-size: 16px; /* smaller font */
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+}
+
+/* Disabled button styling */
+.place-order-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
+}
+
+/* Responsive grid for item list: 4 on desktop */
+.item-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 8px 0;
+  list-style: none;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+/* Scrollbar styling for WebKit browsers */
+.item-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.item-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.item-list::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Item card */
+.item {
+  background: var(--bg-light);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  will-change: transform;
+  cursor: pointer;
+  position: relative;
+  padding: 14px; /* reduced padding */
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Selected item styling */
+.item.selected {
+  animation: clickPop 0.4s ease;
+  background-color: #d4edda;
+}
+
+.item.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary-color);
+  color: white;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: tickBounce 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes clickPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 20px rgba(80, 178, 38, 0.426);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tickBounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Image wrapper */
+.item-image-wrapper {
+  height: 220px; /* reduced from 240px */
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.item:hover .item-image {
+  transform: scale(1.05);
+}
+
+/* Item details */
+.item-details {
+  padding: 14px; /* reduced padding */
+  text-align: center;
+}
+
+.item-details strong {
+  font-size: 18px;
+  color: #222;
+}
+
+.item-price,
+.item-stock,
+.item-limit {
+  font-size: 14px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* Selected quantity info */
+.item-selected-quantity {
+  margin-top: 8px; /* reduced margin */
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Total price */
+.total-price {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 16px 0 24px 0; /* adjusted margins */
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2e8b57;
+  gap: 12px;
+  user-select: none;
+}
+
+.total-price.animate {
+  animation: pulse 0.5s ease-in-out;
+}
+
+.total-price svg {
+  width: 42px;
+  height: 42px;
+  fill: #2e8b57;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+/* Responsive Tweaks */
+
+/* Tablets: 3 items */
+@media (max-width: 768px) {
+  .item-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-height: 480px;
+  }
+  .shop-content {
+    padding: 16px 12px;
+    margin-top: 48px;
+  }
+}
+
+/* Small phones: 2 items */
+@media (max-width: 480px) {
+  .item-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-height: 420px;
+  }
+  .shop-content {
+    padding: 12px 12px;
+    margin-top: 60px;
+  }
+
+  /* Stack header vertically with spacing */
+  .shop-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0 6px;
+    margin-bottom: 24px;
+  }
+
+  .shop-header h2 {
+    
+    font-size: 22px;
+    text-align: center;
+    order: 1;
+    width: 100%;
+  }
+
+  .shop-header .total-price {
+    font-size: 2rem;
+    order: 2;
+    width: 100%;
+    text-align: center;
+    color: var(--primary-color);
+  }
+
+  .shop-header .place-order-btn {
+    order: 3;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Smaller item cards */
+  .item {
+    padding: 12px;
+    border-radius: 12px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .item-image-wrapper {
+    height: 140px;
+    border-radius: 12px;
+  }
+
+  .item-details strong {
+    font-size: 16px;
+  }
+
+  .item-price,
+  .item-stock,
+  .item-limit {
+    font-size: 12px;
+  }
+}
+
+/* Pulse animation for total price */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    color: var(--text-dark);
+  }
+  50% {
+    transform: scale(1.1);
+    color: var(--primary-color);
+  }
+  100% {
+    transform: scale(1);
+    color: var(--text-dark);
+  }
+}
+
+/* Bounce animation for the money icon */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.no-stock-message p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 1rem;
+}
+
+.no-stock-img {
+  width: 280px; /* slightly smaller */
+  height: 280px;
+  margin-top: 10px;
+}
+/* Android-specific shop-header layout */
+.android-device .shop-header {
+  display: flex !important;
+  flex-direction: column !important; /* Stack vertically */
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  padding: 0 16px !important;
+  gap: 8px !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Heading smaller on Android */
+.android-device .shop-header h2 {
+  font-size: 1.1rem !important; /* Smaller heading */
+  font-weight: 600 !important;
+  text-align: center !important;
+  margin: 0 !important;
+  color: var(--text-dark);
+  word-break: break-word !important;
+}
+
+/* Buy button */
+.android-device .shop-header .place-order-btn {
+  width: 100% !important;
+  font-size: 0.95rem !important;
+  padding: 10px 0 !important;
+  border-radius: 10px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Total price below the buy button */
+.android-device .shop-header .total-price {
+  order: 3 !important; /* Ensure it's placed last */
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  color: #2e8b57 !important;
+  margin-top: 8px !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+/* Inset container effect on Android */
+.android-device .shop-content {
+  max-width: 92% !important;         /* Shrink container width */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  transform: scale(0.98) !important; /* Slight overall size reduction */
+  margin-top: 30px;
+}
+/* Android-Specific Styling */
+.android-device .combined-section {
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 12px;
+}
+
+.android-device .section-label {
+  font-size: 1rem;
+  padding: 8px 16px;
+}
+
+.android-device .user-image,
+.android-device .section-image {
+  width: 60px;
+  height: 60px;
+}
+
+.android-device .family-table th,
+.android-device .family-table td {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.android-device .family-table img.profile-image-thumb {
+  width: 48px;
+  height: 48px;
+}
+
+.android-device .info-item {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.android-device .info-icon {
+  font-size: 16px;
+}
+
+.android-device .profile-preview-img {
+  width: 100px;
+  height: 100px;
+}
+
+.android-device .update-email-btn,
+.android-device .logout-button,
+.android-device .shop-button {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.android-device .dashboard-content {
+  padding: 20px 10px;
+}
+.android-device .family-table {
+  width: 90%; /* reduce width from 100% */
+  font-size: 12px !important; /* smaller font */
+}
+
+.android-device .family-table th,
+.android-device .family-table td {
+  padding: 6px 10px !important; /* reduce padding */
+  font-size: 12px !important;
+}
+
+.android-device .family-table img.profile-image-thumb {
+  width: 40px !important;  /* smaller profile images */
+  height: 40px !important;
+}
+
+.android-device .table-wrapper {
+  overflow-x: auto; /* keep scroll on small screens */
+  width: 100%;
+}
+.item-selected-quantity {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

@@ -1,0 +1,90 @@
+.admin-orders-container {
+  font-family: 'Arial', sans-serif;
+  background: #fff;
+  min-height: 100vh;
+  color: #333;
+}
+
+.area-select {
+  margin: 15px 0 25px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.error {
+  color: #b00020;
+  background: #ffe6e6;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.family-section {
+  border-top: 2px solid #ddd;
+  padding-top: 15px;
+  margin-bottom: 25px;
+}
+
+.family-name {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #007acc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 122, 204, 0.3);
+}
+
+.order-card {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.order-details {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.order-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.order-items-table th,
+.order-items-table td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.order-items-table th {
+  background-color: #007acc;
+  color: #fff;
+  font-weight: 600;
+}
+
+.order-items-table tbody tr:nth-child(even) {
+  background-color: #eef6fc;
+}

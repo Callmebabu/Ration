@@ -1,0 +1,2 @@
+npm install react-scripts@latest --legacy-peer-deps
+A surreal collage of a human face. A realistic photo of a face is torn into vertical strips, which are then reassembled in a fan shape. Some strips are deliberately mismatched, slightly rotated, or from different facial expressions or angles, creating an uncanny, dreamlike effect. The face remains clearly recognizable, but with a distorted, fragmented appearance. High-resolution, photorealistic style, neutral background.

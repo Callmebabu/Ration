@@ -1,0 +1,167 @@
+/* Variables for easy theming */
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --sidebar-bg: #333;
+  --sidebar-hover: #555;
+  --text-color: #ffffff;
+  --bg-light: #f9f9f9;
+  --card-bg: #ffffff;
+  --input-border: #ddd;
+  --focus-border: var(--primary-color);
+  --transition-speed: 0.3s;
+}
+
+/* Overall layout */
+.add-stock-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: #333;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  color: var(--text-color);
+  padding: 20px 0;
+  transition: width var(--transition-speed) ease;
+  z-index: 10;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-sidebar .sidebar-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.admin-sidebar .sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-sidebar .sidebar-menu li {
+  padding: 10px 20px;
+}
+
+.admin-sidebar .sidebar-menu li a {
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  border-radius: 4px;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.admin-sidebar .sidebar-menu li a:hover,
+.admin-sidebar .sidebar-menu li a:focus {
+  background-color: var(--sidebar-hover);
+  outline: none;
+}
+
+/* Content */
+.add-stock-content {
+  flex-grow: 1;
+  margin-left: 250px;
+  padding: 30px;
+  background-color: var(--bg-light);
+  transition: margin-left var(--transition-speed) ease;
+}
+
+/* Form container */
+.add-stock-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease;
+}
+
+/* Form elements */
+.add-stock-form input,
+.add-stock-form select,
+.add-stock-form button {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all var(--transition-speed) ease;
+}
+
+.add-stock-form input:focus,
+.add-stock-form select:focus {
+  border-color: var(--focus-border);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.add-stock-form button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.add-stock-form button:hover {
+  background-color: var(--primary-hover);
+}
+
+.add-stock-form .message {
+  text-align: center;
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .add-stock-page {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+    box-shadow: none;
+  }
+
+  .add-stock-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .add-stock-form {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .admin-sidebar .sidebar-title {
+    font-size: 22px;
+  }
+
+  .admin-sidebar .sidebar-menu li a {
+    font-size: 16px;
+  }
+}
