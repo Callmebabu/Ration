@@ -17,10 +17,14 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // 🌐 Dynamically choose API endpoint
-  const API_BASE = window.location.hostname.includes('192.168')
-    ? 'http://192.168.29.125:8000/api'
-    : 'http://localhost:8000/api';
+const hostname = window.location.hostname;
+
+const API_BASE = hostname.includes('192.168')
+  ? 'http://192.168.29.125:8000/api'          // Local network dev
+  : hostname === 'localhost' || hostname === '127.0.0.1'
+  ? 'http://localhost:8000/api'                // Local dev on your machine
+  : 'https://ration-a9md.onrender.com/api';    // Production
+
 
   const fullEmail = `${emailPrefix}@gmail.com`;
 
