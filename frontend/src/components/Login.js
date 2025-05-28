@@ -17,8 +17,8 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // 🌐 Dynamically choose API endpoint
 const hostname = window.location.hostname;
-
 const API_BASE = hostname.includes('192.168')
   ? 'http://192.168.29.125:8000/api'          // Local network dev
   : hostname === 'localhost' || hostname === '127.0.0.1'
