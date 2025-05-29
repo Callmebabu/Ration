@@ -100,7 +100,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://192.168.29.125:3000",
       "http://localhost:3000",  # React app running on this port (adjust as needed)
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 
 # Email settings (For sending OTP emails)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
