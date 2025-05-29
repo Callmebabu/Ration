@@ -3,8 +3,12 @@ from . import views
 from .views import FamilyMemberListView,GetStockData
 from .views import update_member,delete_family, update_family,download_invoice
 from .views import send_otp_email, verify_otp_place_order,admin_view_orders,upload_profile_image,get_notifications,chatbot_response
+from django.http import JsonResponse
 
+def health_check(request):
+    return JsonResponse({'status': 'ok', 'message': 'Django backend is running'})
 urlpatterns = [
+    path('', health_check),
     path('login/', views.login_with_aadhar),
     path('stock/', views.view_stock, name='view_stock'),
     path('add-item/', views.add_item, name='add_item'),
