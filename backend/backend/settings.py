@@ -1,14 +1,21 @@
+
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
+STATIC_URL = '/static/'
+
+# Add this:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Path setup for project base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
-SECRET_KEY = 'django-insecure-*dd4pddegjt^lnflpd8p6p&oajn^dj&-k3u+)_s6_mpj*97u71'  # Use a strong secret key in production
-DEBUG = True  # Set to False in production
-ALLOWED_HOSTS = []  # Add allowed hosts for production
-
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-*dd4pddegjt^lnflpd8p6p&oajn^dj&-k3u+)_s6_mpj*97u71")  # Use a strong secret key in production
+DEBUG = os.getenv("DEBUG", "False") == "True"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 # REST Framework Configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -73,11 +80,11 @@ ROOT_URLCONF = 'backend.urls'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # Using PostgreSQL
-        'NAME': 'ration_db',  # Database name
-        'USER': 'postgres',  # Database user
-        'PASSWORD': '123',  # Database password
-        'HOST': 'localhost',  # Database host
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': os.getenv('DB_NAME','ration_db'),  # Database name
+        'USER': os.getenv('DB_USER','ration_user'),  # Database user
+        'PASSWORD': os.getenv('DB_PASSWORD','WiUdpR2n7eQqsigI8ZXeGie3m2mzX4Fr'),  # Database password
+        'HOST': os.getenv('DB_HOST','dpg-d0rn1iidbo4c73fcdn90-a'),  # Database host
+        'PORT': os.getenv('DB_PORT','5432'),  # Default PostgreSQL port
     }
 }
 
@@ -89,6 +96,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
   # Allow all origins during development
 CORS_ALLOWED_ORIGINS = [
+    "https://magical-smakager-6bb7d6.netlify.app/",
     "http://192.168.29.125:3000",
       "http://localhost:3000",  # React app running on this port (adjust as needed)
 ]
@@ -99,8 +107,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Using Gmail's SMTP server for development
 EMAIL_PORT = 587  # Gmail SMTP port
 EMAIL_USE_TLS = True  # Enable TLS for secure email transmission
-EMAIL_HOST_USER = 'harimaxdp@gmail.com'  # Your Gmail address (use a real Gmail account)
-EMAIL_HOST_PASSWORD = 'opph bxzi dyer rhxj'  # Your Gmail password (use a proper password or app password)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'harimaxdp@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD','opph bxzi dyer rhxj')  # Your Gmail password (use a proper password or app password)
 DEFAULT_FROM_EMAIL = 'harimaxdp@gmail.com'  # Sender email address
 
 # Add static and media serving routes during development
@@ -112,4 +120,4 @@ urlpatterns = [
     # Other URL patterns for your app can go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
