@@ -118,5 +118,3 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Other URL patterns for your app can go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
